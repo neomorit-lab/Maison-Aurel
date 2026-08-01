@@ -537,23 +537,54 @@ a.blog-card:hover {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
+  gap: 18px;
+  position: relative;
+}
+
+.process-list::before {
+  content: "";
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 37px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(184, 138, 68, 0.18), rgba(184, 138, 68, 0.72), rgba(184, 138, 68, 0.18));
+  pointer-events: none;
 }
 
 .process-list li {
-  background: var(--ivory);
-  padding: 24px;
-  min-height: 178px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(184, 138, 68, 0.22);
+  padding: 70px 22px 24px;
+  min-height: 188px;
+  box-shadow: 0 16px 38px rgba(28, 28, 28, 0.055);
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.process-list li:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 138, 68, 0.46);
+  box-shadow: 0 22px 46px rgba(28, 28, 28, 0.08);
 }
 
 .process-list span {
-  display: block;
-  color: var(--gold);
+  position: absolute;
+  top: 16px;
+  left: 22px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 1px solid rgba(184, 138, 68, 0.58);
+  color: var(--gold-dark);
   font-family: var(--display);
-  font-size: 1.55rem;
-  margin-bottom: 18px;
+  font-size: 1.05rem;
+  margin-bottom: 0;
+  box-shadow: 0 0 0 8px var(--ivory-deep), 0 10px 24px rgba(184, 138, 68, 0.18);
 }
 
 .process-list strong {
@@ -1072,10 +1103,29 @@ a.blog-card:hover {
 
   .process-list {
     grid-template-columns: 1fr;
+    gap: 16px;
+    padding-left: 34px;
+  }
+
+  .process-list::before {
+    left: 20px;
+    right: auto;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(184, 138, 68, 0.18), rgba(184, 138, 68, 0.72), rgba(184, 138, 68, 0.18));
   }
 
   .process-list li {
     min-height: auto;
+    padding: 24px 22px 24px 54px;
+  }
+
+  .process-list span {
+    left: -34px;
+    top: 22px;
+    box-shadow: 0 0 0 8px var(--ivory-deep), 0 10px 24px rgba(184, 138, 68, 0.18);
   }
 
   .contact-actions {
