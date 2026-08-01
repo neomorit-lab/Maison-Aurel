@@ -361,6 +361,19 @@ section {
   gap: 12px;
 }
 
+a.product-card,
+a.stone-card,
+a.blog-card {
+  color: inherit;
+}
+
+a.product-card:hover,
+a.stone-card:hover,
+a.blog-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(184, 138, 68, 0.5);
+}
+
 .product-card h3 {
   font-size: 1.2rem;
 }
