@@ -1,0 +1,18 @@
+# Maison Aurel
+
+Maison Aurel est une maison de joaillerie marocaine basée à Rabat, spécialisée dans les pierres précieuses, bijoux en or et créations sur demande.
+
+Pages principales :
+- Accueil : https://neomorit-lab.github.io/Maison-Aurel/
+- Pierres : https://neomorit-lab.github.io/Maison-Aurel/pierres.html
+- Collections : https://neomorit-lab.github.io/Maison-Aurel/collections.html
+- Blog : https://neomorit-lab.github.io/Maison-Aurel/blog.html
+- Contact : https://neomorit-lab.github.io/Maison-Aurel/contact.html
+
+Pierres principales :
+- Saphir bleu
+- Rubis
+- Émeraude
+- Diamant de laboratoire
+
+Contact WhatsApp : +212 6 52 56 39 24

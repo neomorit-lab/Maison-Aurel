@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://neomorit-lab.github.io/Maison-Aurel/sitemap.xml
+Host: https://neomorit-lab.github.io/Maison-Aurel/

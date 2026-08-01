@@ -21,6 +21,7 @@
         "url": baseUrl,
         "logo": baseUrl + "images/logo-maison-aurel.jpeg",
         "image": baseUrl + "images/editorial-loose-gemstones.png",
+        "telephone": "+212652563924",
         "areaServed": ["Rabat", "MA"],
         "address": {
           "@type": "PostalAddress",
@@ -33,7 +34,8 @@
           "longitude": -6.8416
         },
         "description": "Joaillerie marocaine à Rabat spécialisée en or, pierres précieuses et créations sur demande.",
-        "priceRange": "$$"
+        "priceRange": "$$",
+        "sameAs": ["https://wa.me/212652563924"]
       },
       {
         "@type": "WebSite",
@@ -53,6 +55,23 @@
       }
     ]
   };
+
+  const breadcrumbItems = [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": baseUrl }
+  ];
+  if (path !== "index.html") {
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      "position": 2,
+      "name": document.querySelector("h1")?.textContent || document.title,
+      "item": canonicalUrl
+    });
+  }
+  graph["@graph"].push({
+    "@type": "BreadcrumbList",
+    "@id": canonicalUrl + "#breadcrumb",
+    "itemListElement": breadcrumbItems
+  });
 
   if (path.startsWith("article-")) {
     graph["@graph"].push({
@@ -76,6 +95,45 @@
       }
     }));
     graph["@graph"].push({ "@type": "FAQPage", "mainEntity": questions });
+  }
+
+  if (path === "produit.html" && window.MAISON_AUREL_PRODUCTS) {
+    const params = new URLSearchParams(window.location.search);
+    const product = window.MAISON_AUREL_PRODUCTS[params.get("id")] || Object.values(window.MAISON_AUREL_PRODUCTS)[0];
+    const priceMatch = product.price.match(/([\d.]+)/);
+    const price = priceMatch ? priceMatch[1].replace(".", "") : undefined;
+    graph["@graph"].push({
+      "@type": "Product",
+      "@id": canonicalUrl + "#product",
+      "name": product.name,
+      "description": product.description,
+      "image": baseUrl + product.image,
+      "brand": { "@id": baseUrl + "#organization" },
+      "category": "Bijou en or et pierre précieuse",
+      "material": product.specs.Monture || "Or",
+      "offers": {
+        "@type": "Offer",
+        "url": canonicalUrl,
+        "priceCurrency": "MAD",
+        "price": price,
+        "availability": "https://schema.org/InStock",
+        "seller": { "@id": baseUrl + "#organization" }
+      }
+    });
+  }
+
+  if (path === "collections.html" && window.MAISON_AUREL_PRODUCTS) {
+    graph["@graph"].push({
+      "@type": "ItemList",
+      "@id": canonicalUrl + "#products",
+      "name": "Collections Maison Aurel",
+      "itemListElement": Object.entries(window.MAISON_AUREL_PRODUCTS).map(([id, product], index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": baseUrl + "produit.html?id=" + id,
+        "name": product.name
+      }))
+    });
   }
 
   const script = document.createElement("script");

@@ -1,0 +1,19 @@
+{
+  "name": "Maison Aurel",
+  "short_name": "Maison Aurel",
+  "description": "Joaillerie marocaine à Rabat en or, pierres précieuses et créations sur demande.",
+  "start_url": "/Maison-Aurel/",
+  "scope": "/Maison-Aurel/",
+  "display": "standalone",
+  "background_color": "#faf8f2",
+  "theme_color": "#b88a44",
+  "lang": "fr-MA",
+  "icons": [
+    {
+      "src": "images/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
