@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Maison Aurel</title>
+  <meta name="description" content="Contactez Maison Aurel pour une pierre selectionnee, une creation en or ou une piece sur-mesure autour du saphir, rubis, emeraude ou diamant de laboratoire.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand" aria-label="Maison Aurel - Accueil"><img src="images/logo-maison-aurel.jpeg" alt="Logo Maison Aurel"><span>Maison Aurel</span></a>
+      <nav aria-label="Navigation principale">
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="index.html#pierres">Pierres</a></li>
+          <li><a href="a-propos.html">Maison Aurel</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-small btn-gold header-cta" href="contact.html">Nous contacter</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Demander un conseil ou un rendez-vous</h1>
+        <p>Partagez votre intention, la pierre qui vous attire ou le style recherche. Maison Aurel vous orientera vers une pierre seule, une creation prete a porter ou une piece sur demande.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container contact-layout">
+        <aside class="contact-panel">
+          <span class="eyebrow">Coordonnees</span>
+          <h2>Un premier echange suffit souvent a clarifier le choix</h2>
+          <p>Un echange permet de preciser la pierre, le metal, le modele et les finitions envisagees. Les coordonnees definitives pourront etre renseignees lorsque les canaux seront confirmes.</p>
+          <div class="contact-details">
+            <span>WhatsApp a connecter</span>
+            <span>Email a renseigner</span>
+            <span>Telephone a renseigner</span>
+            <span>Instagram a connecter</span>
+          </div>
+        </aside>
+
+        <div class="contact-panel">
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Telephone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="stone">Pierre souhaitee</label>
+              <select id="stone" name="stone">
+                <option value="">Je ne sais pas encore</option>
+                <option>Saphir</option>
+                <option>Rubis</option>
+                <option>Emeraude</option>
+                <option>Diamant de laboratoire</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required placeholder="Pierre, occasion, type de bijou, delai souhaite..."></textarea>
+            </div>
+            <button class="btn btn-gold" type="submit">Demander un conseil</button>
+            <p class="form-success" role="status">Merci. Votre message est pret a etre envoye des qu'un service de formulaire sera connecte.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a href="index.html" class="footer-brand">Maison Aurel</a><p>Joaillerie marocaine en or et pierres precieuses.</p></div>
+      <div><h3>Navigation</h3><a href="index.html">Accueil</a><a href="collections.html">Collections</a><a href="a-propos.html">Maison Aurel</a></div>
+      <div><h3>Contact</h3><a href="contact.html">Coordonnees a renseigner</a><a href="contact.html">Formulaire</a></div>
+    </div>
+    <div class="container footer-bottom">&copy; Maison Aurel. Tous droits reserves.</div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
