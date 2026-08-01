@@ -1141,6 +1141,55 @@ a.blog-card:hover {
   color: var(--text);
 }
 
+.selection-customer-form {
+  display: grid;
+  gap: 14px;
+}
+
+.selection-summary .whatsapp-submit {
+  width: 100%;
+}
+
+.newsletter-section {
+  padding: clamp(50px, 7vw, 82px) 0;
+  background: var(--ivory);
+}
+
+.newsletter-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(24px, 4vw, 50px);
+  align-items: center;
+  padding: clamp(28px, 5vw, 44px);
+  border: 1px solid rgba(184, 138, 68, 0.24);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow);
+}
+
+.newsletter-card p {
+  color: var(--text);
+}
+
+.newsletter-form {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.newsletter-form input,
+.newsletter-form select {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  background: var(--ivory);
+  padding: 0 14px;
+}
+
+.newsletter-form .form-success {
+  grid-column: 1 / -1;
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1568,6 +1617,7 @@ a.blog-card:hover {
   .stone-story-grid,
   .contact-hero-grid,
   .selection-layout,
+  .newsletter-card,
   .contact-strip-grid {
     grid-template-columns: 1fr;
   }
@@ -1708,6 +1758,10 @@ a.blog-card:hover {
   }
 
   .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .newsletter-form {
     grid-template-columns: 1fr;
   }
 

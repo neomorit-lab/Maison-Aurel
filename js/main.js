@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initStonePage();
   initSelectionButtons();
   initSelectionPage();
+  initNewsletterForms();
   initRevealOnScroll();
   initSocialLinks();
   initSoftParallax();
@@ -322,22 +323,90 @@ function renderSelectionPage() {
   document.querySelectorAll("[data-clear-selection]").forEach((button) => {
     button.onclick = clearSelection;
   });
+  initSelectionCustomerForm(items);
+}
 
-  if (whatsapp) {
-    const message = buildSelectionMessage(items);
+function initSelectionCustomerForm(items) {
+  const form = document.querySelector("[data-selection-customer-form]");
+  const whatsapp = document.querySelector("[data-selection-whatsapp]");
+  const success = document.querySelector("[data-selection-success]");
+  if (!form || !whatsapp) return;
+
+  whatsapp.classList.remove("show");
+  form.onsubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const customer = {
+      name: data.get("name") || "",
+      phone: data.get("phone") || "",
+      city: data.get("city") || "",
+      delivery: data.get("delivery") || "",
+      deadline: data.get("deadline") || ""
+    };
+    localStorage.setItem("maisonAurelCustomer", JSON.stringify(customer));
+    const message = buildSelectionMessage(items, customer);
     const number = String((window.MAISON_AUREL_CONFIG || {}).whatsappNumber || "").replace(/\D/g, "");
     const encoded = encodeURIComponent(message);
     whatsapp.href = number ? `https://wa.me/${number}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
     whatsapp.target = "_blank";
     whatsapp.rel = "noopener";
+    whatsapp.classList.add("show");
+    if (success) success.classList.add("show");
+  };
+
+  try {
+    const saved = JSON.parse(localStorage.getItem("maisonAurelCustomer") || "{}");
+    Object.entries(saved).forEach(([key, value]) => {
+      const field = form.elements[key];
+      if (field && value) field.value = value;
+    });
+  } catch (error) {
+    localStorage.removeItem("maisonAurelCustomer");
   }
 }
 
-function buildSelectionMessage(items) {
+function buildSelectionMessage(items, customer = {}) {
   const lines = items.map((item, index) => (
     `${index + 1}. ${item.type} - ${item.name}\n${item.meta || ""}\n${item.price || "Sur devis"}\n${location.origin}${location.pathname.replace(/[^/]*$/, "")}${item.url}`
   ));
-  return `Bonjour Maison Aurel,\n\nJe souhaite recevoir un conseil pour cette sélection :\n\n${lines.join("\n\n")}\n\nMerci de me confirmer disponibilité, budget final, délai et modalités de commande.`;
+  const customerLines = [
+    `Nom : ${customer.name || ""}`,
+    `Telephone : ${customer.phone || ""}`,
+    `Ville / pays : ${customer.city || ""}`,
+    `Remise ou livraison : ${customer.delivery || ""}`,
+    `Delai souhaite : ${customer.deadline || "A preciser"}`
+  ].join("\n");
+  return `Bonjour Maison Aurel,\n\nJe souhaite recevoir un conseil pour cette selection.\n\nCoordonnees :\n${customerLines}\n\nSelection :\n${lines.join("\n\n")}\n\nMerci de me confirmer disponibilite, budget final, delai et modalites de commande.`;
+}
+
+function initNewsletterForms() {
+  document.querySelectorAll("[data-newsletter-form]").forEach((form) => {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get("email") || "").trim().toLowerCase();
+      if (!email) return;
+      const subscribers = getNewsletterSubscribers().filter((entry) => entry.email !== email);
+      subscribers.push({
+        name: String(data.get("name") || "").trim(),
+        email,
+        interest: String(data.get("interest") || "").trim(),
+        subscribedAt: new Date().toISOString()
+      });
+      localStorage.setItem("maisonAurelNewsletter", JSON.stringify(subscribers));
+      const success = form.querySelector("[data-newsletter-success]");
+      if (success) success.classList.add("show");
+      form.reset();
+    });
+  });
+}
+
+function getNewsletterSubscribers() {
+  try {
+    return JSON.parse(localStorage.getItem("maisonAurelNewsletter") || "[]");
+  } catch (error) {
+    return [];
+  }
 }
 
 function renderStoneGallery(container, mainImage, stone) {

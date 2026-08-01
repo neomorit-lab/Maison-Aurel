@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ma sélection - Maison Aurel</title>
-  <meta name="description" content="Regroupez vos pierres et bijoux Maison Aurel dans une sélection, puis envoyez votre demande de disponibilité et de devis sur WhatsApp.">
+  <meta name="description" content="Regroupez vos pierres et bijoux Maison Aurel dans une sélection, renseignez vos coordonnées, puis envoyez votre demande sur WhatsApp.">
   <meta property="og:title" content="Ma sélection Maison Aurel">
   <meta property="og:description" content="Préparez une sélection de pierres et bijoux avant de demander disponibilité, budget final et délai.">
   <meta property="og:image" content="images/editorial-loose-gemstones.png">
@@ -44,7 +44,7 @@
       <div class="container">
         <span class="eyebrow">E-commerce WhatsApp</span>
         <h1>Ma sélection Maison Aurel</h1>
-        <p>Ajoutez les pierres ou bijoux qui vous intéressent, puis envoyez une seule demande WhatsApp pour confirmer disponibilité, budget final, délai et modalités de commande.</p>
+        <p>Ajoutez les pierres ou bijoux qui vous intéressent, renseignez vos coordonnées, puis envoyez une seule demande WhatsApp pour confirmer disponibilité, budget final, délai et modalités.</p>
       </div>
     </section>
 
@@ -64,12 +64,67 @@
 
         <aside class="selection-summary" data-selection-actions hidden>
           <span class="eyebrow">Étape suivante</span>
-          <h2>Envoyer la demande</h2>
-          <p>Le message WhatsApp inclut automatiquement les fiches sélectionnées. Maison Aurel vous répond ensuite avec les informations réelles : disponibilité, prix final, délai et remise/livraison.</p>
-          <a class="btn btn-whatsapp" href="https://wa.me/?text=Bonjour%20Maison%20Aurel" data-selection-whatsapp>Envoyer ma sélection</a>
+          <h2>Coordonnées avant envoi</h2>
+          <p>Ces informations sont ajoutées au message WhatsApp pour savoir qui commande, dans quelle ville, et comment organiser la remise ou la livraison.</p>
+          <form class="selection-customer-form" data-selection-customer-form>
+            <div class="form-group">
+              <label for="selectionName">Nom complet</label>
+              <input id="selectionName" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+              <label for="selectionPhone">Téléphone</label>
+              <input id="selectionPhone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="form-group">
+              <label for="selectionCity">Ville / pays</label>
+              <input id="selectionCity" name="city" type="text" autocomplete="address-level2" required placeholder="Ex. Rabat, Maroc">
+            </div>
+            <div class="form-group">
+              <label for="selectionDelivery">Remise ou livraison</label>
+              <select id="selectionDelivery" name="delivery">
+                <option>À confirmer avec Maison Aurel</option>
+                <option>Rendez-vous à Rabat</option>
+                <option>Livraison au Maroc</option>
+                <option>Conseil à distance</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="selectionDeadline">Délai souhaité</label>
+              <input id="selectionDeadline" name="deadline" type="text" placeholder="Ex. cette semaine, 2 semaines, cadeau...">
+            </div>
+            <label class="privacy-check">
+              <input type="checkbox" required>
+              <span>J'accepte que Maison Aurel utilise ces informations uniquement pour répondre à ma demande, conformément à la loi marocaine 09-08.</span>
+            </label>
+            <button class="btn btn-gold" type="submit">Préparer WhatsApp</button>
+          </form>
+          <a class="btn btn-whatsapp whatsapp-submit" href="https://wa.me/?text=Bonjour%20Maison%20Aurel" data-selection-whatsapp>Envoyer ma sélection</a>
           <button class="btn" type="button" data-clear-selection>Vider la sélection</button>
+          <p class="form-success" data-selection-success role="status">Le message WhatsApp est prêt avec vos coordonnées et votre sélection.</p>
           <p class="privacy-note">Les prix affichés sur le site sont indicatifs ou sur devis. La commande est confirmée uniquement après échange direct.</p>
         </aside>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="container newsletter-card">
+        <div>
+          <span class="eyebrow">Newsletter</span>
+          <h2>Recevoir les nouvelles pierres et conseils Maison Aurel</h2>
+          <p>Inscription locale pour préparer la base newsletter : email, prénom et intérêt principal.</p>
+        </div>
+        <form class="newsletter-form" data-newsletter-form>
+          <input name="name" type="text" autocomplete="given-name" placeholder="Prénom">
+          <input name="email" type="email" autocomplete="email" placeholder="Email" required>
+          <select name="interest">
+            <option>Nouvelles pierres</option>
+            <option>Bijoux en or</option>
+            <option>Sur-mesure</option>
+            <option>Conseils joaillerie</option>
+          </select>
+          <button class="btn btn-gold" type="submit">S'inscrire</button>
+          <p class="form-success" data-newsletter-success role="status">Inscription enregistrée localement. Connexion email/newsletter à brancher ensuite.</p>
+        </form>
       </div>
     </section>
   </main>
