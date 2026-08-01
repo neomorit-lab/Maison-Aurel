@@ -531,7 +531,7 @@ a.blog-card:hover {
   min-height: 360px;
   overflow: hidden;
   isolation: isolate;
-  color: var(--white);
+  color: #f7f1e6;
   background: var(--ink);
   border-color: rgba(255, 255, 255, 0.16);
 }
@@ -569,16 +569,28 @@ a.blog-card:hover {
   background: linear-gradient(135deg, rgba(14, 45, 92, 0.65), rgba(7, 13, 25, 0.24));
 }
 
+.stone-card.sapphire {
+  color: #dbe9ff;
+}
+
 .stone-card.ruby::after {
   background: linear-gradient(135deg, rgba(114, 20, 37, 0.62), rgba(24, 8, 12, 0.2));
+}
+
+.stone-card.ruby {
+  color: #ffe2df;
 }
 
 .stone-card.emerald::after {
   background: linear-gradient(135deg, rgba(24, 91, 66, 0.64), rgba(7, 20, 15, 0.24));
 }
 
+.stone-card.emerald {
+  color: #dff5e8;
+}
+
 .stone-card.diamond {
-  color: var(--ink);
+  color: #5f4b2f;
 }
 
 .stone-card.diamond::before {
@@ -609,8 +621,23 @@ a.blog-card:hover {
 }
 
 .stone-card.diamond span {
-  border-color: rgba(28, 28, 28, 0.16);
-  background: rgba(255, 255, 255, 0.48);
+  border-color: rgba(95, 75, 47, 0.24);
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.stone-card.sapphire span {
+  border-color: rgba(219, 233, 255, 0.38);
+  background: rgba(219, 233, 255, 0.12);
+}
+
+.stone-card.ruby span {
+  border-color: rgba(255, 226, 223, 0.38);
+  background: rgba(255, 226, 223, 0.12);
+}
+
+.stone-card.emerald span {
+  border-color: rgba(223, 245, 232, 0.38);
+  background: rgba(223, 245, 232, 0.12);
 }
 
 .stone-card h3,
