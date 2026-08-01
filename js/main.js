@@ -30,6 +30,20 @@ function initContactForm() {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+    const data = new FormData(form);
+    const summary = [
+      `Nom : ${data.get("name") || ""}`,
+      `Téléphone : ${data.get("phone") || ""}`,
+      `Email : ${data.get("email") || ""}`,
+      `Pierre : ${data.get("stone") || "À conseiller"}`,
+      `Message : ${data.get("message") || ""}`
+    ].join("\n");
+
+    const summaryNode = form.querySelector(".form-summary");
+    if (summaryNode) {
+      summaryNode.value = summary;
+    }
+
     const success = form.querySelector(".form-success");
     if (success) {
       success.classList.add("show");
@@ -59,7 +73,11 @@ function initProductPage() {
   if (description) description.textContent = product.description;
   if (visual) {
     visual.className = `product-visual ${product.tone}`;
-    visual.setAttribute("aria-label", `Emplacement pour photo macro : ${product.name}`);
+    visual.innerHTML = "";
+    const image = document.createElement("img");
+    image.src = product.image;
+    image.alt = product.name;
+    visual.appendChild(image);
   }
 
   if (specs) {

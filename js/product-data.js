@@ -3,77 +3,86 @@ window.MAISON_AUREL_PRODUCTS = {
     name: "Pendentif saphir bleu",
     range: "Collection Essentielle",
     price: "Indication : 1.400 DH",
+    image: "images/product-sapphire-pendant.png",
     tone: "sapphire",
-    meta: "Or et saphir selectionne",
-    description: "Un pendentif epure imagine pour laisser la profondeur du saphir bleu dialoguer avec une monture sobre.",
+    meta: "Or et saphir sélectionné",
+    description: "Un pendentif épuré imaginé pour laisser la profondeur du saphir bleu dialoguer avec une monture sobre.",
     specs: {
       Pierre: "Saphir",
-      Monture: "Or",
-      Usage: "Quotidien, cadeau, premiere selection",
+      Monture: "Or, finition polie",
+      Usage: "Quotidien, cadeau, première sélection",
+      Disponibilité: "Selon sélection atelier",
       Note: "Indication variable selon le poids d'or et la pierre disponible"
     }
   },
   "ess-rubis": {
-    name: "Bague rubis delicate",
+    name: "Bague rubis délicate",
     range: "Collection Essentielle",
     price: "Indication : 1.800 DH",
+    image: "images/product-ruby-ring.png",
     tone: "ruby",
     meta: "Or et rubis rouge",
-    description: "Une bague fine au caractere chaleureux, concue pour souligner l'intensite du rubis sans alourdir la ligne.",
-    specs: { Pierre: "Rubis", Monture: "Or", Style: "Ligne epuree", Note: "Piece ajustable selon disponibilite" }
+    description: "Une bague fine au caractère chaleureux, conçue pour souligner l'intensité du rubis sans alourdir la ligne.",
+    specs: { Pierre: "Rubis", Monture: "Or, finition polie", Style: "Ligne épurée", Disponibilité: "Selon taille et pierre", Note: "Pièce ajustable selon disponibilité" }
   },
   "ess-emeraude": {
-    name: "Pendentif emeraude",
+    name: "Pendentif émeraude",
     range: "Collection Essentielle",
     price: "Indication : 1.900 DH",
+    image: "images/product-emerald-pendant.png",
     tone: "emerald",
-    meta: "Or et emeraude lumineuse",
-    description: "Une piece lumineuse autour d'une emeraude choisie pour sa couleur, pensee comme une creation essentielle.",
-    specs: { Pierre: "Emeraude", Monture: "Or", Style: "Pendentif", Note: "La nuance de vert peut varier selon la pierre" }
+    meta: "Or et émeraude lumineuse",
+    description: "Une pièce lumineuse autour d'une émeraude choisie pour sa couleur, pensée comme une création essentielle.",
+    specs: { Pierre: "Émeraude", Monture: "Or, finition polie", Style: "Pendentif", Disponibilité: "Sur demande", Note: "La nuance de vert peut varier selon la pierre" }
   },
   "ess-diamant-labo": {
     name: "Clou diamant de laboratoire",
     range: "Collection Essentielle",
     price: "Indication : 1.600 DH",
+    image: "images/product-lab-diamond-stud.png",
     tone: "diamond",
     meta: "Or et diamant de laboratoire",
-    description: "Un bijou discret et lumineux qui met en avant l'eclat du diamant de laboratoire dans une ligne contemporaine.",
-    specs: { Pierre: "Diamant de laboratoire", Monture: "Or", Style: "Minimal", Note: "Caracteristiques precisees selon la pierre disponible" }
+    description: "Un bijou discret et lumineux qui met en avant l'éclat du diamant de laboratoire dans une ligne contemporaine.",
+    specs: { Pierre: "Diamant de laboratoire", Monture: "Or, finition polie", Style: "Minimal", Disponibilité: "Selon caractéristiques", Note: "Caractéristiques précisées selon la pierre disponible" }
   },
   "sig-saphir": {
     name: "Bague saphir profond",
     range: "Collection Signature",
     price: "Indication : 4.800 DH",
+    image: "images/product-sapphire-pendant.png",
     tone: "sapphire",
     meta: "Or et saphir bleu",
-    description: "Une bague de caractere, construite autour d'un saphir bleu expressif et d'une monture equilibree.",
+    description: "Une bague de caractère, construite autour d'un saphir bleu expressif et d'une monture équilibrée.",
     specs: { Pierre: "Saphir", Monture: "Or", Gamme: "Signature", Note: "Sur devis selon pierre et taille" }
   },
   "sig-rubis": {
     name: "Pendentif rubis signature",
     range: "Collection Signature",
     price: "Indication : 5.200 DH",
+    image: "images/product-ruby-ring.png",
     tone: "ruby",
     meta: "Or et rubis central",
-    description: "Un pendentif centre sur l'intensite du rubis, pour une piece marquee sans perdre en sobriete.",
-    specs: { Pierre: "Rubis", Monture: "Or", Gamme: "Signature", Note: "Couleur et dimensions a confirmer lors du conseil" }
+    description: "Un pendentif centré sur l'intensité du rubis, pour une pièce marquée sans perdre en sobriété.",
+    specs: { Pierre: "Rubis", Monture: "Or", Gamme: "Signature", Note: "Couleur et dimensions à confirmer lors du conseil" }
   },
   "sig-emeraude": {
-    name: "Bague emeraude",
+    name: "Bague émeraude",
     range: "Collection Signature",
     price: "Indication : 6.400 DH",
+    image: "images/product-emerald-pendant.png",
     tone: "emerald",
-    meta: "Or et emeraude ovale",
-    description: "Une bague elegante autour d'une emeraude ovale, pensee pour valoriser la couleur et la presence de la pierre.",
-    specs: { Pierre: "Emeraude", Monture: "Or", Gamme: "Signature", Note: "Fiche descriptive fournie lorsque disponible" }
+    meta: "Or et émeraude ovale",
+    description: "Une bague élégante autour d'une émeraude ovale, pensée pour valoriser la couleur et la présence de la pierre.",
+    specs: { Pierre: "Émeraude", Monture: "Or", Gamme: "Signature", Note: "Fiche descriptive fournie lorsque disponible" }
   },
   "sig-diamant-labo": {
     name: "Solitaire diamant de laboratoire",
     range: "Collection Signature",
     price: "Indication : 6.900 DH",
+    image: "images/product-lab-diamond-stud.png",
     tone: "diamond",
     meta: "Or et diamant de laboratoire",
-    description: "Un solitaire contemporain qui met en relation l'eclat du diamant de laboratoire, la precision de la ligne et l'equilibre de la monture.",
-    specs: { Pierre: "Diamant de laboratoire", Monture: "Or", Gamme: "Signature", Note: "Details de la pierre confirmes avant commande" }
+    description: "Un solitaire contemporain qui met en relation l'éclat du diamant de laboratoire, la précision de la ligne et l'équilibre de la monture.",
+    specs: { Pierre: "Diamant de laboratoire", Monture: "Or", Gamme: "Signature", Note: "Détails de la pierre confirmés avant commande" }
   }
 };
