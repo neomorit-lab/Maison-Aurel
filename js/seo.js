@@ -15,13 +15,25 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "JewelryStore", "LocalBusiness"],
         "@id": baseUrl + "#organization",
         "name": "Maison Aurel",
         "url": baseUrl,
         "logo": baseUrl + "images/logo-maison-aurel.jpeg",
-        "areaServed": "MA",
-        "description": "Joaillerie marocaine en or, pierres précieuses et créations sur demande."
+        "image": baseUrl + "images/editorial-loose-gemstones.png",
+        "areaServed": ["Rabat", "MA"],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Rabat",
+          "addressCountry": "MA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 34.0209,
+          "longitude": -6.8416
+        },
+        "description": "Joaillerie marocaine à Rabat spécialisée en or, pierres précieuses et créations sur demande.",
+        "priceRange": "$$"
       },
       {
         "@type": "WebSite",

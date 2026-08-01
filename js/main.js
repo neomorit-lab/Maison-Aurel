@@ -1,5 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
+  initWhatsAppLinks();
   initContactForm();
   initProductPage();
   initStonePage();
@@ -25,6 +26,20 @@ function initNavigation() {
   });
 }
 
+function initWhatsAppLinks() {
+  const config = window.MAISON_AUREL_CONFIG || {};
+  const number = String(config.whatsappNumber || "").replace(/\D/g, "");
+  const defaultMessage = config.whatsappDefaultMessage || "Bonjour Maison Aurel, je souhaite un conseil.";
+
+  document.querySelectorAll("[data-whatsapp-link]").forEach((link) => {
+    const message = link.getAttribute("data-whatsapp-message") || defaultMessage;
+    const encoded = encodeURIComponent(message);
+    link.href = number ? `https://wa.me/${number}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+    link.target = "_blank";
+    link.rel = "noopener";
+  });
+}
+
 function initContactForm() {
   const form = document.querySelector(".contact-form");
   if (!form) return;
@@ -42,6 +57,15 @@ function initContactForm() {
 
     const summaryNode = form.querySelector(".form-summary");
     if (summaryNode) summaryNode.value = summary;
+
+    const whatsappLink = form.querySelector("[data-whatsapp-link]");
+    if (whatsappLink) {
+      const config = window.MAISON_AUREL_CONFIG || {};
+      const number = String(config.whatsappNumber || "").replace(/\D/g, "");
+      const encoded = encodeURIComponent(`Bonjour Maison Aurel,\n\n${summary}`);
+      whatsappLink.href = number ? `https://wa.me/${number}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+      whatsappLink.classList.add("show");
+    }
 
     const success = form.querySelector(".form-success");
     if (success) {
