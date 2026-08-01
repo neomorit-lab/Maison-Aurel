@@ -703,6 +703,53 @@ a.blog-card:hover {
   align-items: start;
 }
 
+.contact-hero {
+  padding: clamp(46px, 7vw, 86px) 0 clamp(42px, 6vw, 78px);
+  background:
+    linear-gradient(90deg, rgba(250, 248, 242, 0.98), rgba(250, 248, 242, 0.74)),
+    var(--ivory-deep);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(300px, 0.78fr);
+  gap: clamp(34px, 5vw, 70px);
+  align-items: center;
+}
+
+.contact-hero-copy {
+  display: grid;
+  gap: 18px;
+  max-width: 720px;
+}
+
+.contact-hero-copy h1 {
+  max-width: 12em;
+  font-size: clamp(2.25rem, 5vw, 4.2rem);
+  line-height: 1.02;
+}
+
+.contact-hero-copy p {
+  max-width: 65ch;
+  color: var(--text);
+  font-size: 1.06rem;
+}
+
+.contact-hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  border: 1px solid rgba(184, 138, 68, 0.24);
+  box-shadow: var(--shadow);
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.18s linear, filter 0.35s ease;
+}
+
+.contact-section {
+  padding: clamp(54px, 7vw, 88px) 0;
+}
+
 .about-mark {
   display: grid;
   place-items: center;
@@ -724,26 +771,83 @@ a.blog-card:hover {
 }
 
 .contact-panel {
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(184, 138, 68, 0.2);
+  box-shadow: var(--shadow);
+  padding: clamp(26px, 4vw, 38px);
+}
+
+.contact-panel h2 {
+  font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+  line-height: 1.15;
+}
+
+.contact-panel p {
+  color: var(--text);
+}
+
+.contact-info-card {
+  position: sticky;
+  top: 110px;
 }
 
 .contact-details {
   display: grid;
-  gap: 16px;
+  gap: 0;
   margin-top: 24px;
 }
 
 .contact-details a,
 .contact-details span {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 16px 0;
   border-top: 1px solid var(--line);
   color: var(--ink);
 }
 
+.contact-details .btn {
+  justify-content: center;
+  border-top: 0;
+  margin-bottom: 8px;
+}
+
+.contact-details i {
+  color: var(--gold-dark);
+  width: 18px;
+  text-align: center;
+}
+
+.contact-prep {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-prep h3 {
+  font-size: 1.25rem;
+}
+
+.contact-prep ul {
+  margin: 12px 0 0;
+  padding-left: 18px;
+  color: var(--text);
+}
+
+.contact-prep li + li {
+  margin-top: 8px;
+}
+
 .contact-form {
   display: grid;
   gap: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .form-group {
@@ -767,6 +871,16 @@ a.blog-card:hover {
   background: var(--ivory);
   color: var(--ink);
   padding: 13px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: rgba(184, 138, 68, 0.72);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(184, 138, 68, 0.12);
+  outline: none;
 }
 
 .form-group textarea {
@@ -785,6 +899,13 @@ a.blog-card:hover {
   display: block;
 }
 
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
 .whatsapp-submit {
   display: none;
   background: #1f7a4d;
@@ -799,6 +920,11 @@ a.blog-card:hover {
 .form-summary {
   min-height: 170px;
   font-size: 0.92rem;
+  display: none;
+}
+
+.form-summary.show {
+  display: block;
 }
 
 .privacy-check {
@@ -1179,7 +1305,8 @@ a.blog-card:hover {
 
   .hero-visual img,
   .article-image,
-  .stone-gallery-main {
+  .stone-gallery-main,
+  .contact-hero-image {
     transform: none;
     transition: none;
   }
@@ -1247,6 +1374,7 @@ a.blog-card:hover {
   .article-layout,
   .stone-story-hero,
   .stone-story-grid,
+  .contact-hero-grid,
   .contact-strip-grid {
     grid-template-columns: 1fr;
   }
@@ -1275,6 +1403,16 @@ a.blog-card:hover {
 
   .stone-advice-panel {
     position: static;
+  }
+
+  .contact-info-card {
+    position: static;
+  }
+
+  .contact-hero-image {
+    max-width: 560px;
+    margin: 0 auto;
+    aspect-ratio: 4 / 3.4;
   }
 
   .teaser-products,
@@ -1372,6 +1510,10 @@ a.blog-card:hover {
     display: grid;
   }
 
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
   .two-columns,
   .three-columns,
   .teaser-products,
@@ -1412,6 +1554,14 @@ a.blog-card:hover {
 
   .stone-story-note {
     padding: 18px;
+  }
+
+  .contact-hero {
+    padding: 36px 0 48px;
+  }
+
+  .contact-hero-copy h1 {
+    line-height: 1.08;
   }
 
   .filter-bar {

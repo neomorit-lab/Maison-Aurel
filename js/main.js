@@ -82,11 +82,15 @@ function initContactForm() {
       `Téléphone : ${data.get("phone") || ""}`,
       `Email : ${data.get("email") || ""}`,
       `Pierre : ${data.get("stone") || "À conseiller"}`,
+      `Type de demande : ${data.get("project") || "À préciser"}`,
       `Message : ${data.get("message") || ""}`
     ].join("\n");
 
     const summaryNode = form.querySelector(".form-summary");
-    if (summaryNode) summaryNode.value = summary;
+    if (summaryNode) {
+      summaryNode.value = summary;
+      summaryNode.classList.add("show");
+    }
 
     const whatsappLink = form.querySelector("[data-whatsapp-link]");
     if (whatsappLink) {
@@ -254,7 +258,7 @@ function initRevealOnScroll() {
 function initSoftParallax() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const images = document.querySelectorAll(".hero-visual img, .article-image, .stone-gallery-main");
+  const images = document.querySelectorAll(".hero-visual img, .article-image, .stone-gallery-main, .contact-hero-image");
   if (!images.length) return;
 
   let ticking = false;
