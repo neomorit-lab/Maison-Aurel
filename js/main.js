@@ -152,21 +152,61 @@ function initStonePage() {
   const intro = document.querySelector("#stoneIntro");
   const specs = document.querySelector("#stoneSpecs");
   const image = document.querySelector("#stoneImage");
+  const gallery = document.querySelector("#stoneGallery");
+  const approach = document.querySelector("#stoneApproach");
+  const checklist = document.querySelector("#stoneChecklist");
   const source = document.querySelector("#stoneSource");
+  const whatsapp = document.querySelector("[data-stone-whatsapp]");
 
   document.title = `${stone.name} - Maison Aurel`;
   title.textContent = stone.title;
   if (meta) meta.textContent = stone.name;
   if (intro) intro.textContent = stone.meta;
+  if (approach) approach.textContent = stone.approach;
   if (image) {
     image.src = stone.image;
     image.alt = stone.name;
+  }
+  if (gallery) renderStoneGallery(gallery, image, stone);
+  if (checklist) renderList(checklist, stone.checklist);
+  if (whatsapp) {
+    whatsapp.setAttribute("data-whatsapp-message", `Bonjour Maison Aurel, je souhaite un conseil pour ${stone.name}. Merci de me guider sur la pierre, le budget et la possibilite de montage en bijou.`);
   }
   if (source) {
     source.href = stone.source;
     source.textContent = stone.sourceLabel;
   }
   if (specs) renderHistorySections(specs, stone.sections);
+}
+
+function renderStoneGallery(container, mainImage, stone) {
+  container.innerHTML = "";
+  const images = stone.gallery && stone.gallery.length ? stone.gallery : [stone.image];
+  images.forEach((src, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = index === 0 ? "is-active" : "";
+    button.setAttribute("aria-label", `Afficher le visuel ${index + 1} de ${stone.name}`);
+    button.innerHTML = `<img loading="lazy" decoding="async" src="${src}" alt="">`;
+    button.addEventListener("click", () => {
+      if (mainImage) {
+        mainImage.src = src;
+        mainImage.alt = `${stone.name} - visuel ${index + 1}`;
+      }
+      container.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
+      button.classList.add("is-active");
+    });
+    container.appendChild(button);
+  });
+}
+
+function renderList(container, entries = []) {
+  container.innerHTML = "";
+  entries.forEach((value) => {
+    const item = document.createElement("li");
+    item.textContent = value;
+    container.appendChild(item);
+  });
 }
 
 function renderKeyValues(container, entries) {
@@ -188,7 +228,7 @@ function renderHistorySections(container, entries) {
 }
 
 function initRevealOnScroll() {
-  const targets = document.querySelectorAll("section, .product-card, .stone-card, .blog-card, .collection-card, .article-content h2, .article-content p");
+  const targets = document.querySelectorAll("section, .product-card, .stone-card, .blog-card, .collection-card, .article-content h2, .article-content p, .stone-story-content > *, .history-list article, .stone-advice-panel");
   targets.forEach((target, index) => {
     target.classList.add("reveal");
     target.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
@@ -214,7 +254,7 @@ function initRevealOnScroll() {
 function initSoftParallax() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const images = document.querySelectorAll(".hero-visual img, .article-image");
+  const images = document.querySelectorAll(".hero-visual img, .article-image, .stone-gallery-main");
   if (!images.length) return;
 
   let ticking = false;
