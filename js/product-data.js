@@ -1,4 +1,4 @@
-window.MAISON_AUREL_PRODUCTS = {
+﻿window.MAISON_AUREL_PRODUCTS = {
   "ess-saphir": {
     name: "Pendentif saphir bleu",
     range: "Collection Essentielle",

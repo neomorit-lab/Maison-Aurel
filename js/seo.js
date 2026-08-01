@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   const baseUrl = "https://neomorit-lab.github.io/Maison-Aurel/";
   const path = window.location.pathname.split("/").pop() || "index.html";
   const canonicalPath = path === "index.html" ? "" : path;
