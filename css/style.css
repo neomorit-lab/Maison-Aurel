@@ -180,6 +180,18 @@ textarea {
   color: var(--white);
 }
 
+.wa-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 0.86em;
+  line-height: 1;
+}
+
 .btn-small {
   min-height: 42px;
   padding: 0 16px;
@@ -771,6 +783,11 @@ a.blog-card:hover {
   gap: 18px;
 }
 
+.article-lead {
+  font-size: 1.08rem;
+  color: var(--ink);
+}
+
 .article-content h1 {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
 }
@@ -779,6 +796,15 @@ a.blog-card:hover {
 .legal-content h2 {
   margin-top: 16px;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.article-cta {
+  margin-top: 18px;
+  padding: 26px;
+  border: 1px solid rgba(184, 138, 68, 0.28);
+  background: rgba(255, 255, 255, 0.68);
+  display: grid;
+  gap: 14px;
 }
 
 .legal-content {
@@ -848,6 +874,59 @@ a.blog-card:hover {
 
 .whatsapp-float:hover {
   background: #17663f;
+}
+
+.social-dock {
+  position: fixed;
+  right: 22px;
+  bottom: 84px;
+  z-index: 30;
+  display: grid;
+  gap: 10px;
+}
+
+.social-dock a {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--ivory);
+  border: 1px solid rgba(250, 248, 242, 0.18);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  box-shadow: 0 12px 28px rgba(28, 28, 28, 0.18);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.social-dock a:hover {
+  transform: translateY(-2px);
+  background: var(--gold-dark);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .site-footer {
@@ -1018,5 +1097,10 @@ a.blog-card:hover {
   .whatsapp-float {
     right: 14px;
     bottom: 14px;
+  }
+
+  .social-dock {
+    right: 14px;
+    bottom: 76px;
   }
 }

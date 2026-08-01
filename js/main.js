@@ -4,6 +4,8 @@
   initContactForm();
   initProductPage();
   initStonePage();
+  initRevealOnScroll();
+  initSocialLinks();
 });
 
 function initNavigation() {
@@ -37,7 +39,24 @@ function initWhatsAppLinks() {
     link.href = number ? `https://wa.me/${number}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
     link.target = "_blank";
     link.rel = "noopener";
+    if (!link.querySelector(".wa-icon") && (link.classList.contains("whatsapp-float") || link.classList.contains("btn-whatsapp") || link.classList.contains("whatsapp-inline"))) {
+      link.innerHTML = `<span class="wa-icon" aria-hidden="true">☎</span><span>${link.textContent.trim() || "WhatsApp"}</span>`;
+    }
   });
+}
+
+function initSocialLinks() {
+  const config = window.MAISON_AUREL_CONFIG || {};
+  if (!document.querySelector(".social-dock")) {
+    const dock = document.createElement("div");
+    dock.className = "social-dock";
+    dock.setAttribute("aria-label", "Réseaux Maison Aurel");
+    dock.innerHTML = `
+      <a href="${config.instagramUrl || "#"}" target="_blank" rel="noopener" aria-label="Instagram Maison Aurel"><span>IG</span></a>
+      <a href="${config.facebookUrl || "#"}" target="_blank" rel="noopener" aria-label="Facebook Maison Aurel"><span>f</span></a>
+    `;
+    document.body.appendChild(dock);
+  }
 }
 
 function initContactForm() {
@@ -94,6 +113,11 @@ function initProductPage() {
   if (meta) meta.textContent = product.meta;
   if (price) price.textContent = product.price;
   if (description) description.textContent = product.description;
+  const whatsapp = document.querySelector("[data-product-whatsapp]");
+  if (whatsapp) {
+    whatsapp.setAttribute("data-whatsapp-message", `Bonjour Maison Aurel, je souhaite recevoir un conseil pour ${product.name}. Budget, disponibilité et délai à confirmer.`);
+    initWhatsAppLinks();
+  }
 
   if (visual) {
     visual.className = `product-visual ${product.tone}`;
@@ -150,4 +174,25 @@ function renderHistorySections(container, entries) {
     section.innerHTML = `<h2>${title}</h2><p>${body}</p>`;
     container.appendChild(section);
   });
+}
+
+function initRevealOnScroll() {
+  const targets = document.querySelectorAll("section, .product-card, .stone-card, .blog-card, .collection-card, .article-content h2, .article-content p");
+  targets.forEach((target) => target.classList.add("reveal"));
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach((target) => target.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+  targets.forEach((target) => observer.observe(target));
 }
