@@ -756,6 +756,42 @@ section {
   gap: 16px;
 }
 
+.stone-detail {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.gem-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 460px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(184, 138, 68, 0.16), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,0.78), rgba(241,234,223,0.88));
+  border: 1px solid rgba(184, 138, 68, 0.26);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.gem-stage canvas {
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  display: block;
+}
+
+.gem-caption {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .site-footer {
   background: #141414;
   color: var(--ivory);
@@ -816,6 +852,7 @@ section {
   .contact-layout,
   .product-detail,
   .article-layout,
+  .stone-detail,
   .contact-strip-grid {
     grid-template-columns: 1fr;
   }

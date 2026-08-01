@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail pierre - Maison Aurel</title>
+  <meta name="description" content="Détail d'une pierre Maison Aurel avec visualisation 3D animée, conseils de choix, usage et création en or.">
+  <meta property="og:title" content="Détail pierre Maison Aurel">
+  <meta property="og:description" content="Comprendre une pierre avant une création en or ou une commande sur-mesure.">
+  <meta property="og:image" content="images/hero-jewelry-morocco.png">
+  <meta property="og:type" content="product">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand"><img src="images/logo-maison-aurel.jpeg" alt="Logo Maison Aurel"><span>Maison Aurel</span></a>
+      <nav aria-label="Navigation principale">
+        <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <ul class="nav-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collections.html">Collections</a></li>
+          <li><a href="pierres.html" class="active">Pierres</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="a-propos.html">Maison Aurel</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-small btn-gold header-cta" href="contact.html">Nous contacter</a>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="container stone-detail">
+        <div class="gem-stage" data-gem-canvas>
+          <canvas width="720" height="720" aria-label="Visualisation 3D animée de la pierre"></canvas>
+          <span class="gem-caption">Visualisation 3D indicative</span>
+        </div>
+        <article class="article-content">
+          <span class="eyebrow" id="stoneMeta">Pierre Maison Aurel</span>
+          <h1 id="stoneTitle">Détail de la pierre</h1>
+          <p id="stoneIntro">Sélection, couleur, usage et conseil de montage.</p>
+          <div id="stoneSpecs" class="contact-details"></div>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="contact.html">Demander cette pierre</a>
+            <a class="btn" href="collections.html#pierres-seules">Retour aux pierres</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><div><a href="index.html" class="footer-brand">Maison Aurel</a><p>Joaillerie marocaine en or et pierres précieuses.</p></div><div><h3>Navigation</h3><a href="pierres.html">Pierres</a><a href="collections.html">Collections</a><a href="blog.html">Blog</a></div><div><h3>Contact</h3><a href="contact.html">Demande de conseil</a><a href="mentions-legales.html">Mentions légales</a></div></div><div class="container footer-bottom">&copy; Maison Aurel. Tous droits réservés.</div></footer>
+  <script src="js/stone-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
