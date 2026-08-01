@@ -63,7 +63,7 @@
     tone: "ruby",
     meta: "Or et rubis central",
     description: "Un pendentif centré sur l'intensité du rubis, pour une pièce marquée sans perdre en sobriété.",
-    specs: { Pierre: "Rubis", Monture: "Or", Gamme: "Signature", Note: "Couleur et dimensions à confirmer lors du conseil" }
+    specs: { Pierre: "Rubis", Monture: "Or", Gamme: "Signature", Note: "Couleur et dimensions précisées lors du conseil" }
   },
   "sig-emeraude": {
     name: "Bague émeraude",
