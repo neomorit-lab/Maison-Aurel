@@ -477,17 +477,13 @@ a.blog-card:hover {
 }
 
 .sapphire .product-visual,
-.product-visual.sapphire,
-.stone-card.sapphire span { background-color: var(--sapphire); }
+.product-visual.sapphire { background-color: var(--sapphire); }
 .ruby .product-visual,
-.product-visual.ruby,
-.stone-card.ruby span { background-color: var(--ruby); }
+.product-visual.ruby { background-color: var(--ruby); }
 .emerald .product-visual,
-.product-visual.emerald,
-.stone-card.emerald span { background-color: var(--emerald); }
+.product-visual.emerald { background-color: var(--emerald); }
 .diamond .product-visual,
-.product-visual.diamond,
-.stone-card.diamond span { background-color: var(--diamond); border: 1px solid var(--sand); }
+.product-visual.diamond { background-color: var(--diamond); border: 1px solid var(--sand); }
 
 .stones-section {
   background: var(--white);
@@ -498,13 +494,111 @@ a.blog-card:hover {
 }
 
 .stone-card {
-  display: grid;
-  gap: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 340px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--white);
+  background: var(--ink);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.stone-card img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+.stone-card::before,
+.stone-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.stone-card::before {
+  background: linear-gradient(180deg, rgba(12, 12, 12, 0.08), rgba(12, 12, 12, 0.76));
+}
+
+.stone-card::after {
+  opacity: 0.62;
+  mix-blend-mode: multiply;
+}
+
+.stone-card.sapphire::after {
+  background: linear-gradient(135deg, rgba(14, 45, 92, 0.65), rgba(7, 13, 25, 0.24));
+}
+
+.stone-card.ruby::after {
+  background: linear-gradient(135deg, rgba(114, 20, 37, 0.62), rgba(24, 8, 12, 0.2));
+}
+
+.stone-card.emerald::after {
+  background: linear-gradient(135deg, rgba(24, 91, 66, 0.64), rgba(7, 20, 15, 0.24));
+}
+
+.stone-card.diamond {
+  color: var(--ink);
+}
+
+.stone-card.diamond::before {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(247, 244, 236, 0.82));
+}
+
+.stone-card.diamond::after {
+  background: linear-gradient(135deg, rgba(213, 203, 188, 0.5), rgba(255, 255, 255, 0.18));
+}
+
+.stone-card:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.08) contrast(1.04);
 }
 
 .stone-card span {
-  width: 44px;
-  height: 44px;
+  width: fit-content;
+  height: auto;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+  color: currentColor;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.stone-card.diamond span {
+  border-color: rgba(28, 28, 28, 0.16);
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.stone-card h3,
+.stone-card p {
+  position: relative;
+  margin: 0;
+}
+
+.stone-card h3 {
+  margin-top: 16px;
+  font-size: 1.55rem;
+  color: currentColor;
+}
+
+.stone-card p {
+  margin-top: 8px;
+  color: currentColor;
+  opacity: 0.9;
 }
 
 .split-section,
