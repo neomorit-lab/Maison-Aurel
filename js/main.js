@@ -1,10 +1,13 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  initSelectionNav();
   initNavigation();
   initHeaderScroll();
   initWhatsAppLinks();
   initContactForm();
   initProductPage();
   initStonePage();
+  initSelectionButtons();
+  initSelectionPage();
   initRevealOnScroll();
   initSocialLinks();
   initSoftParallax();
@@ -115,6 +118,7 @@ function initProductPage() {
 
   const params = new URLSearchParams(window.location.search);
   const product = window.MAISON_AUREL_PRODUCTS[params.get("id")] || Object.values(window.MAISON_AUREL_PRODUCTS)[0];
+  const productId = params.get("id") || Object.keys(window.MAISON_AUREL_PRODUCTS)[0];
   const visual = document.querySelector("#productVisual");
   const range = document.querySelector("#productRange");
   const meta = document.querySelector("#productMeta");
@@ -144,6 +148,15 @@ function initProductPage() {
   }
 
   if (specs) renderKeyValues(specs, product.specs);
+
+  setSelectionButton({
+    type: "Bijou",
+    id: productId,
+    name: product.name,
+    meta: product.range,
+    price: product.price,
+    url: `produit.html?id=${encodeURIComponent(productId)}`
+  });
 }
 
 function initStonePage() {
@@ -152,6 +165,7 @@ function initStonePage() {
 
   const params = new URLSearchParams(window.location.search);
   const stone = window.MAISON_AUREL_STONES[params.get("id")] || window.MAISON_AUREL_STONES.saphir;
+  const stoneId = params.get("id") || "saphir";
   const meta = document.querySelector("#stoneMeta");
   const intro = document.querySelector("#stoneIntro");
   const specs = document.querySelector("#stoneSpecs");
@@ -181,6 +195,149 @@ function initStonePage() {
     source.textContent = stone.sourceLabel;
   }
   if (specs) renderHistorySections(specs, stone.sections);
+
+  setSelectionButton({
+    type: "Pierre",
+    id: stoneId,
+    name: stone.name,
+    meta: "Pierre seule ou base de création",
+    price: "Sur devis selon disponibilité",
+    url: `pierre.html?id=${encodeURIComponent(stoneId)}`
+  });
+}
+
+function getSelection() {
+  try {
+    return JSON.parse(localStorage.getItem("maisonAurelSelection") || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveSelection(items) {
+  localStorage.setItem("maisonAurelSelection", JSON.stringify(items));
+  updateSelectionCount();
+}
+
+function addToSelection(item) {
+  const items = getSelection();
+  const key = `${item.type}:${item.id}`;
+  const exists = items.some((entry) => `${entry.type}:${entry.id}` === key);
+  if (!exists) {
+    items.push({ ...item, addedAt: new Date().toISOString() });
+    saveSelection(items);
+  }
+  return !exists;
+}
+
+function removeFromSelection(key) {
+  const items = getSelection().filter((entry) => `${entry.type}:${entry.id}` !== key);
+  saveSelection(items);
+  renderSelectionPage();
+}
+
+function clearSelection() {
+  saveSelection([]);
+  renderSelectionPage();
+}
+
+function initSelectionNav() {
+  const nav = document.querySelector(".nav-links");
+  if (!nav || nav.querySelector("[data-selection-count]")) return;
+  const item = document.createElement("li");
+  item.innerHTML = `<a class="selection-nav-link" href="selection.html">Sélection <span data-selection-count>0</span></a>`;
+  nav.appendChild(item);
+  updateSelectionCount();
+}
+
+function updateSelectionCount() {
+  const count = getSelection().length;
+  document.querySelectorAll("[data-selection-count]").forEach((node) => {
+    node.textContent = String(count);
+    node.classList.toggle("has-items", count > 0);
+  });
+}
+
+function setSelectionButton(item) {
+  const button = document.querySelector("[data-add-selection]");
+  if (!button) return;
+  button.dataset.selectionItem = JSON.stringify(item);
+  const inSelection = getSelection().some((entry) => `${entry.type}:${entry.id}` === `${item.type}:${item.id}`);
+  button.textContent = inSelection ? "Déjà dans ma sélection" : "Ajouter à ma sélection";
+  button.classList.toggle("is-added", inSelection);
+}
+
+function initSelectionButtons() {
+  document.querySelectorAll("[data-add-selection]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = JSON.parse(button.dataset.selectionItem || "{}");
+      if (!item.id) return;
+      const added = addToSelection(item);
+      button.textContent = added ? "Ajouté à ma sélection" : "Déjà dans ma sélection";
+      button.classList.add("is-added");
+    });
+  });
+}
+
+function initSelectionPage() {
+  if (!document.querySelector("[data-selection-page]")) return;
+  renderSelectionPage();
+}
+
+function renderSelectionPage() {
+  const list = document.querySelector("[data-selection-list]");
+  const empty = document.querySelector("[data-selection-empty]");
+  const actions = document.querySelector("[data-selection-actions]");
+  const whatsapp = document.querySelector("[data-selection-whatsapp]");
+  if (!list) return;
+
+  const items = getSelection();
+  list.innerHTML = "";
+  if (empty) empty.hidden = items.length > 0;
+  if (actions) actions.hidden = items.length === 0;
+
+  items.forEach((item) => {
+    const key = `${item.type}:${item.id}`;
+    const card = document.createElement("article");
+    card.className = "selection-item";
+    card.innerHTML = `
+      <div>
+        <span class="price-range">${item.type}</span>
+        <h2>${item.name}</h2>
+        <p>${item.meta || ""}</p>
+        <p class="product-price">${item.price || "Sur devis"}</p>
+      </div>
+      <div class="selection-item-actions">
+        <a class="btn btn-small" href="${item.url}">Voir fiche</a>
+        <button class="btn btn-small" type="button" data-remove-selection="${key}">Retirer</button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  list.querySelectorAll("[data-remove-selection]").forEach((button) => {
+    button.addEventListener("click", () => removeFromSelection(button.dataset.removeSelection));
+  });
+
+  document.querySelectorAll("[data-clear-selection]").forEach((button) => {
+    button.onclick = clearSelection;
+  });
+
+  if (whatsapp) {
+    const message = buildSelectionMessage(items);
+    const number = String((window.MAISON_AUREL_CONFIG || {}).whatsappNumber || "").replace(/\D/g, "");
+    const encoded = encodeURIComponent(message);
+    whatsapp.href = number ? `https://wa.me/${number}?text=${encoded}` : `https://wa.me/?text=${encoded}`;
+    whatsapp.target = "_blank";
+    whatsapp.rel = "noopener";
+  }
+}
+
+function buildSelectionMessage(items) {
+  const lines = items.map((item, index) => (
+    `${index + 1}. ${item.type} - ${item.name}\n${item.meta || ""}\n${item.price || "Sur devis"}\n${location.origin}${location.pathname.replace(/[^/]*$/, "")}${item.url}`
+  ));
+  return `Bonjour Maison Aurel,\n\nJe souhaite recevoir un conseil pour cette sélection :\n\n${lines.join("\n\n")}\n\nMerci de me confirmer disponibilité, budget final, délai et modalités de commande.`;
 }
 
 function renderStoneGallery(container, mainImage, stone) {

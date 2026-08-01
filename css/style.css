@@ -152,6 +152,30 @@ textarea {
   transform-origin: left;
 }
 
+.selection-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-selection-count] {
+  display: inline-grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(184, 138, 68, 0.14);
+  color: var(--gold-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+[data-selection-count].has-items {
+  background: var(--gold);
+  color: var(--white);
+}
+
 .nav-toggle {
   display: none;
   width: 42px;
@@ -191,6 +215,12 @@ textarea {
   background: var(--ink);
   border-color: var(--ink);
   color: var(--ivory);
+}
+
+.btn.is-added {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
 }
 
 .btn-gold {
@@ -1043,6 +1073,74 @@ a.blog-card:hover {
   color: var(--muted);
 }
 
+.selection-section {
+  padding: clamp(54px, 7vw, 88px) 0;
+}
+
+.selection-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: clamp(28px, 5vw, 56px);
+  align-items: start;
+}
+
+.selection-empty,
+.selection-item,
+.selection-summary {
+  border: 1px solid rgba(184, 138, 68, 0.22);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow);
+}
+
+.selection-empty {
+  padding: clamp(28px, 4vw, 42px);
+}
+
+.selection-empty p {
+  max-width: 66ch;
+  color: var(--text);
+}
+
+.selection-list {
+  display: grid;
+  gap: 16px;
+}
+
+.selection-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  padding: 24px;
+  align-items: center;
+}
+
+.selection-item h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+}
+
+.selection-item p {
+  color: var(--text);
+}
+
+.selection-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.selection-summary {
+  position: sticky;
+  top: 110px;
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+}
+
+.selection-summary p {
+  color: var(--text);
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1469,6 +1567,7 @@ a.blog-card:hover {
   .stone-story-hero,
   .stone-story-grid,
   .contact-hero-grid,
+  .selection-layout,
   .contact-strip-grid {
     grid-template-columns: 1fr;
   }
@@ -1500,6 +1599,10 @@ a.blog-card:hover {
   }
 
   .contact-info-card {
+    position: static;
+  }
+
+  .selection-summary {
     position: static;
   }
 
@@ -1606,6 +1709,14 @@ a.blog-card:hover {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .selection-item {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-item-actions {
+    justify-content: flex-start;
   }
 
   .two-columns,
