@@ -324,6 +324,8 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: translateY(var(--parallax-y, 0)) scale(1.025);
+  transition: transform 0.18s linear;
 }
 
 .stone-orbit,
@@ -780,6 +782,7 @@ a.blog-card:hover {
   background: rgba(255, 255, 255, 0.68);
   border: 1px solid var(--line);
   padding: 24px;
+  transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
 }
 
 .blog-card img {
@@ -787,6 +790,12 @@ a.blog-card:hover {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border: 1px solid rgba(184, 138, 68, 0.24);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.blog-card:hover img {
+  transform: scale(1.035);
+  filter: saturate(1.04) contrast(1.02);
 }
 
 .blog-card h2 {
@@ -810,6 +819,8 @@ a.blog-card:hover {
   object-fit: cover;
   border: 1px solid rgba(184, 138, 68, 0.24);
   box-shadow: var(--shadow);
+  transform: translateY(var(--parallax-y, 0));
+  transition: transform 0.18s linear, filter 0.35s ease;
 }
 
 .article-content {
@@ -967,6 +978,12 @@ a.blog-card:hover {
 
   .reveal {
     opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-visual img,
+  .article-image {
     transform: none;
     transition: none;
   }
