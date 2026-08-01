@@ -217,11 +217,10 @@ textarea {
   line-height: 1;
 }
 
-.wa-icon svg,
-.social-dock svg {
-  width: 1em;
-  height: 1em;
-  fill: currentColor;
+.wa-icon i,
+.social-dock i {
+  font-size: 1em;
+  line-height: 1;
 }
 
 .btn-small {
