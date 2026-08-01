@@ -86,3 +86,18 @@
     specs: { Pierre: "Diamant de laboratoire", Monture: "Or", Gamme: "Signature", Note: "Détails de la pierre confirmés avant commande" }
   }
 };
+
+Object.entries(window.MAISON_AUREL_PRODUCTS).forEach(([id, product]) => {
+  const isSignature = id.startsWith("sig-");
+  product.status = product.status || "Sur demande";
+  product.availabilityLabel = product.availabilityLabel || (isSignature ? "Sur devis après choix de la pierre" : "Selon disponibilité atelier");
+  product.delay = product.delay || (isSignature ? "Délai confirmé au devis" : "Délai indicatif confirmé sur WhatsApp");
+  product.uniqueness = product.uniqueness || (isSignature ? "Pièce personnalisable" : "Petite série ou pièce adaptée selon pierre");
+  product.specs = {
+    ...product.specs,
+    Statut: product.status,
+    Disponibilité: product.specs.Disponibilité || product.availabilityLabel,
+    Délai: product.delay,
+    Type: product.uniqueness
+  };
+});

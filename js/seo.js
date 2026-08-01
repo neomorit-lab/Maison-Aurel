@@ -111,14 +111,35 @@
       "brand": { "@id": baseUrl + "#organization" },
       "category": "Bijou en or et pierre précieuse",
       "material": product.specs.Monture || "Or",
+      "additionalProperty": Object.entries(product.specs || {}).map(([name, value]) => ({
+        "@type": "PropertyValue",
+        "name": name,
+        "value": value
+      })),
       "offers": {
         "@type": "Offer",
         "url": canonicalUrl,
         "priceCurrency": "MAD",
         "price": price,
-        "availability": "https://schema.org/InStock",
+        "availability": "https://schema.org/PreOrder",
+        "itemCondition": "https://schema.org/NewCondition",
+        "priceValidUntil": "2026-12-31",
         "seller": { "@id": baseUrl + "#organization" }
       }
+    });
+  }
+
+  if (path === "pierres.html" && window.MAISON_AUREL_STONES) {
+    graph["@graph"].push({
+      "@type": "ItemList",
+      "@id": canonicalUrl + "#stones",
+      "name": "Pierres précieuses Maison Aurel",
+      "itemListElement": Object.entries(window.MAISON_AUREL_STONES).map(([id, stone], index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": baseUrl + "pierre.html?id=" + id,
+        "name": stone.name
+      }))
     });
   }
 

@@ -154,8 +154,8 @@ function initProductPage() {
     type: "Bijou",
     id: productId,
     name: product.name,
-    meta: product.range,
-    price: product.price,
+    meta: `${product.range} · ${product.availabilityLabel || "Disponibilité à confirmer"}`,
+    price: `${product.price} · ${product.delay || "Délai à confirmer"}`,
     url: `produit.html?id=${encodeURIComponent(productId)}`
   });
 }
@@ -201,8 +201,8 @@ function initStonePage() {
     type: "Pierre",
     id: stoneId,
     name: stone.name,
-    meta: "Pierre seule ou base de création",
-    price: "Sur devis selon disponibilité",
+    meta: "Pierre seule ou base de création · disponibilité à confirmer",
+    price: "Sur devis · pièce à vérifier avant réservation",
     url: `pierre.html?id=${encodeURIComponent(stoneId)}`
   });
 }
@@ -341,7 +341,10 @@ function initSelectionCustomerForm(items) {
       phone: data.get("phone") || "",
       city: data.get("city") || "",
       delivery: data.get("delivery") || "",
-      deadline: data.get("deadline") || ""
+      deadline: data.get("deadline") || "",
+      budget: data.get("budget") || "",
+      occasion: data.get("occasion") || "",
+      intent: data.get("intent") || ""
     };
     localStorage.setItem("maisonAurelCustomer", JSON.stringify(customer));
     const message = buildSelectionMessage(items, customer);
@@ -374,7 +377,10 @@ function buildSelectionMessage(items, customer = {}) {
     `Telephone : ${customer.phone || ""}`,
     `Ville / pays : ${customer.city || ""}`,
     `Remise ou livraison : ${customer.delivery || ""}`,
-    `Delai souhaite : ${customer.deadline || "A preciser"}`
+    `Delai souhaite : ${customer.deadline || "A preciser"}`,
+    `Budget souhaite : ${customer.budget || "A preciser"}`,
+    `Occasion : ${customer.occasion || "A preciser"}`,
+    `Intention : ${customer.intent || "A preciser"}`
   ].join("\n");
   return `Bonjour Maison Aurel,\n\nJe souhaite recevoir un conseil pour cette selection.\n\nCoordonnees :\n${customerLines}\n\nSelection :\n${lines.join("\n\n")}\n\nMerci de me confirmer disponibilite, budget final, delai et modalites de commande.`;
 }

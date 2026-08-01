@@ -92,6 +92,30 @@
               <label for="selectionDeadline">Délai souhaité</label>
               <input id="selectionDeadline" name="deadline" type="text" placeholder="Ex. cette semaine, 2 semaines, cadeau...">
             </div>
+            <div class="form-group">
+              <label for="selectionBudget">Budget souhaité</label>
+              <input id="selectionBudget" name="budget" type="text" placeholder="Ex. 1.500 DH, 5.000 DH, sur devis...">
+            </div>
+            <div class="form-group">
+              <label for="selectionOccasion">Occasion</label>
+              <select id="selectionOccasion" name="occasion">
+                <option>À préciser</option>
+                <option>Fiançailles</option>
+                <option>Cadeau</option>
+                <option>Mariage</option>
+                <option>Anniversaire</option>
+                <option>Usage quotidien</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="selectionIntent">Intention</label>
+              <select id="selectionIntent" name="intent">
+                <option>Je souhaite commander</option>
+                <option>Je souhaite comparer</option>
+                <option>Je souhaite réserver une pierre</option>
+                <option>Je souhaite créer une pièce sur-mesure</option>
+              </select>
+            </div>
             <label class="privacy-check">
               <input type="checkbox" required>
               <span>J'accepte que Maison Aurel utilise ces informations uniquement pour répondre à ma demande, conformément à la loi marocaine 09-08.</span>
@@ -99,6 +123,7 @@
             <button class="btn btn-gold" type="submit">Préparer WhatsApp</button>
           </form>
           <a class="btn btn-whatsapp whatsapp-submit" href="https://wa.me/?text=Bonjour%20Maison%20Aurel" data-selection-whatsapp>Envoyer ma sélection</a>
+          <a class="btn" href="collections.html">Continuer mes achats</a>
           <button class="btn" type="button" data-clear-selection>Vider la sélection</button>
           <p class="form-success" data-selection-success role="status">Le message WhatsApp est prêt avec vos coordonnées et votre sélection.</p>
           <p class="privacy-note">Les prix affichés sur le site sont indicatifs ou sur devis. La commande est confirmée uniquement après échange direct.</p>

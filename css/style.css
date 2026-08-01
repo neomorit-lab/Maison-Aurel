@@ -1190,6 +1190,10 @@ a.blog-card:hover {
   grid-column: 1 / -1;
 }
 
+.photo-roadmap-section {
+  background: var(--ivory-deep);
+}
+
 .blog-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
