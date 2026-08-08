@@ -1,0 +1,5 @@
+admin/config/config.php
+admin/storage/logs/*
+admin/storage/exports/*
+!admin/storage/logs/.gitkeep
+!admin/storage/exports/.gitkeep

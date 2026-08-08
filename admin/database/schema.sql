@@ -1,0 +1,103 @@
+CREATE TABLE admin_users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL DEFAULT 'admin',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE leads (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  source VARCHAR(80) NOT NULL,
+  status VARCHAR(40) NOT NULL DEFAULT 'new',
+  name VARCHAR(160),
+  phone VARCHAR(80),
+  email VARCHAR(180),
+  city VARCHAR(160),
+  budget VARCHAR(120),
+  occasion VARCHAR(120),
+  intent VARCHAR(180),
+  message TEXT,
+  payload JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE products (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  slug VARCHAR(160) NOT NULL UNIQUE,
+  name VARCHAR(180) NOT NULL,
+  type VARCHAR(80) NOT NULL,
+  collection VARCHAR(120),
+  status VARCHAR(60) DEFAULT 'sur_demande',
+  price_indication VARCHAR(120),
+  availability VARCHAR(160),
+  delay_label VARCHAR(160),
+  image_path VARCHAR(255),
+  description TEXT,
+  seo_title VARCHAR(180),
+  seo_description VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE stock_items (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  product_id INT UNSIGNED NULL,
+  item_type VARCHAR(80) NOT NULL,
+  stone_type VARCHAR(80),
+  sku VARCHAR(120),
+  status VARCHAR(60) NOT NULL DEFAULT 'available',
+  quantity INT NOT NULL DEFAULT 1,
+  notes TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE tracking_events (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  event_name VARCHAR(120) NOT NULL,
+  page_url VARCHAR(500),
+  referrer VARCHAR(500),
+  utm_source VARCHAR(120),
+  utm_medium VARCHAR(120),
+  utm_campaign VARCHAR(160),
+  payload JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE ad_campaigns (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(180) NOT NULL,
+  platform VARCHAR(80) NOT NULL,
+  landing_url VARCHAR(255),
+  budget DECIMAL(10,2),
+  status VARCHAR(60) DEFAULT 'draft',
+  started_at DATE,
+  ended_at DATE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE content_posts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  slug VARCHAR(180) NOT NULL UNIQUE,
+  title VARCHAR(220) NOT NULL,
+  status VARCHAR(60) DEFAULT 'draft',
+  keyword VARCHAR(180),
+  excerpt TEXT,
+  body LONGTEXT,
+  image_path VARCHAR(255),
+  published_at DATETIME NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE newsletter_subscribers (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(180) NOT NULL UNIQUE,
+  name VARCHAR(120),
+  interest VARCHAR(120),
+  status VARCHAR(60) DEFAULT 'subscribed',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
