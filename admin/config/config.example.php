@@ -2,7 +2,7 @@
 return [
     'app_name' => 'Maison Aurel Admin',
     'app_env' => 'local',
-    'base_url' => '/admin',
+    'base_url' => '',
     'timezone' => 'Africa/Casablanca',
 
     'db' => [

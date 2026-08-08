@@ -27,7 +27,15 @@ function admin_config(?string $key = null, mixed $default = null): mixed
 
 function admin_url(string $path = ''): string
 {
-    $base = rtrim((string) admin_config('base_url', '/admin'), '/');
+    $configuredBase = (string) admin_config('base_url', '');
+    $base = $configuredBase !== ''
+        ? rtrim($configuredBase, '/')
+        : rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/admin/index.php')), '/');
+
+    if ($base === '' || $base === '.') {
+        $base = '/admin';
+    }
+
     return $base . '/' . ltrim($path, '/');
 }
 
