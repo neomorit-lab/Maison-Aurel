@@ -21,4 +21,25 @@ return [
         'from_email' => 'contact@example.com',
         'from_name' => 'Maison Aurel',
     ],
+
+    'integrations' => [
+        'google_sheets' => [
+            'enabled' => false,
+            'spreadsheet_id' => '',
+            'credentials_path' => '',
+        ],
+        'meta_ads' => [
+            'enabled' => false,
+            'access_token' => '',
+            'ad_account_id' => '',
+        ],
+        'google_analytics' => [
+            'enabled' => false,
+            'property_id' => '',
+            'credentials_path' => '',
+        ],
+        'whatsapp' => [
+            'phone' => '212652563924',
+        ],
+    ],
 ];

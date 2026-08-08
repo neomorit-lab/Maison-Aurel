@@ -101,3 +101,38 @@ CREATE TABLE newsletter_subscribers (
   status VARCHAR(60) DEFAULT 'subscribed',
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE integration_connections (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  provider VARCHAR(120) NOT NULL,
+  label VARCHAR(180) NOT NULL,
+  status VARCHAR(60) DEFAULT 'disabled',
+  config JSON,
+  last_checked_at DATETIME NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE sync_jobs (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  job_key VARCHAR(160) NOT NULL,
+  provider VARCHAR(120),
+  status VARCHAR(60) DEFAULT 'queued',
+  started_at DATETIME NULL,
+  finished_at DATETIME NULL,
+  summary TEXT,
+  payload JSON,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE api_logs (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  endpoint VARCHAR(180) NOT NULL,
+  method VARCHAR(12) NOT NULL,
+  status_code SMALLINT UNSIGNED,
+  request_payload JSON,
+  response_payload JSON,
+  ip_address VARCHAR(80),
+  user_agent VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

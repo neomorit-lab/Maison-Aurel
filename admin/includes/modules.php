@@ -8,6 +8,7 @@ $adminModules = [
     'products' => ['label' => 'Produits', 'file' => __DIR__ . '/../modules/products/index.php'],
     'collections' => ['label' => 'Collections', 'file' => __DIR__ . '/../modules/collections/index.php'],
     'ads' => ['label' => 'Ads', 'file' => __DIR__ . '/../modules/ads/index.php'],
+    'sync' => ['label' => 'Sync & APIs', 'file' => __DIR__ . '/../modules/sync/index.php'],
     'kpis' => ['label' => 'KPI & data mining', 'file' => __DIR__ . '/../modules/kpis/index.php'],
     'content' => ['label' => 'Blogs & articles', 'file' => __DIR__ . '/../modules/content/index.php'],
 ];
